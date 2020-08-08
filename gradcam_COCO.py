@@ -281,12 +281,11 @@ if __name__ == '__main__':
     label_names = ['person','bicycle','car','motorcycle','airplane','bus','train','truck','boat','traffic light','fire hydrant','stop sign','parking meter','bench','bird','cat','dog','horse','sheep','cow','elephant','bear','zebra','giraffe','backpack','umbrella','handbag','tie','suitcase','frisbee','skis','snowboard','sports ball','kite','baseball bat','baseball glove','skateboard','surfboard','tennis racket','bottle','wine glass','cup','fork','knife','spoon','bowl','banana','apple','sandwich','orange','broccoli','carrot','hot dog','pizza','donut','cake','chair','couch','potted plant','bed','dining table','toilet','tv','laptop','mouse','remote','keyboard','cell phone','microwave','oven','toaster','sink','refrigerator','book','clock','vase','scissors','teddy bear','hair drier','toothbrush']
     args = get_args()
     num_models = 5
-    # model_path = "/home/dipesh/paper_awl/code/contrastive_learning/best_weights/baseline_448x448_top3.pth"
     model_path = "/home/dipesh/Interactive-GradCAM/COCO_pretrained.pth"
     model_name = "baseline_448x448_top3"
     model = VGG16Backbone(num_classes=80)
     model.load_state_dict(torch.load(model_path,map_location=torch.device('cpu')))
-    path = "teddy_person.jpg"
+    path = "input_images/man_bike.jpg"
     path = path.strip()
     print(path)
     img_path = path
@@ -302,7 +301,7 @@ if __name__ == '__main__':
     confidence = predictions[top5_arg]
     # If None, returns the map for the highest scoring category.
     # Otherwise, targets the requested index.
-    target_index = label_names.index('teddy bear')
+    target_index = label_names.index('person')
 
     if target_index:
         target_class = label_names[target_index]
@@ -315,7 +314,7 @@ if __name__ == '__main__':
     cam_mask = cv2.merge([mask, mask, mask])
     cam_gb = deprocess_image(cam_mask*gb)
     gb = deprocess_image(gb)
-    cam = show_cam_on_image(img, mask, "jigsaw/cam")
+    cam = show_cam_on_image(img, mask, "cam/cam")
 
     font = cv2.FONT_HERSHEY_SIMPLEX
     text_img = np.zeros(gb.shape)
@@ -329,5 +328,5 @@ if __name__ == '__main__':
     # text_img = cv2.putText(text_img,'{}: {}'.format(label_names[top5_arg[5]],str(rounded_preds[top5_arg[5]])[:5]),(50,150), font, 1,(255,255,255),2,cv2.LINE_AA)
 
     output = np.concatenate((np.uint8(255 * img), gb, cam, cam_gb, text_img), axis=1)
-    save_img('combined_output_5/{}'.format(path), output)
+    save_img('output_coco/{}_{}'.format(target_class,path.split('/')[-1]), output)
 

@@ -252,7 +252,7 @@ if __name__ == '__main__':
     # mobilenet = models.mobilenet_v2(pretrained=True)
     model = models.resnet50(pretrained=True)
     model_name = "resnet50"
-    path = "input_images/teddy_person.jpg"
+    path = "input_images/man_bike.jpg"
     path = path.strip()
     # print(path)
     img_path = path
@@ -267,7 +267,7 @@ if __name__ == '__main__':
     confidence = predictions[top5_arg]
     # If None, returns the map for the highest scoring category.
     # Otherwise, targets the requested index.
-    target_index = 850 #None
+    target_index = None #850 -> Teddy bear
     if target_index:
         target_class = label_names[str(target_index)].split(',')[0]
     else:
@@ -293,5 +293,5 @@ if __name__ == '__main__':
     text_img = cv2.putText(text_img,'{}: {}'.format(label_names[str(top5_arg[4])],str(rounded_preds[top5_arg[4]])[:5]),(50//2,200//2), font, 0.5,(255,255,255),1,cv2.LINE_AA)
 
     output = np.concatenate((np.uint8(255 * img), gb, cam, cam_gb, text_img), axis=1)
-    save_img('output/{}_{}'.format(target_class,path.split('/')[-1]), output)
+    save_img('output_imagenet/{}_{}'.format(target_class,path.split('/')[-1]), output)
 
