@@ -79,3 +79,13 @@ class ModelOutputs():
         
         return target_activations, x
 ```
+
+@misc{Dipeshtamboli,
+  author = {Dipesh Tamboli},
+  title = {Interactive GradCAM},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/Dipeshtamboli/Interactive-GradCAM}},
+  commit = {4834d52554cc3fcbcb8758750957080e250cf4b6}
+}
