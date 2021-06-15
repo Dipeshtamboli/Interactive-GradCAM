@@ -1,6 +1,9 @@
 # Interactive-GradCAM
 The base code for this GradCAM visualization is written by [Jacob Gildenblat](https://github.com/jacobgil). The original code was only for the PyTorch's pretrained Resnet-50 model. I have modified it for the customizable architectures([Modified VGG16 pretrained on COCO dataset](/Interactive_GradCAM_COCO.ipynb)).
 
+### [Colab notebook link for Imagenet](https://colab.research.google.com/github/Dipeshtamboli/Interactive-GradCAM/blob/master/Interactive_GradCAM_ImageNet.ipynb#scrollTo=49m5KXP3r2CC)
+### [Colab notebook link for COCO](https://colab.research.google.com/github/Dipeshtamboli/Interactive-GradCAM/blob/master/Interactive_GradCAM_COCO.ipynb)
+
 This repository contains two iPython notebooks.
 You can upload your own image and check the GradCAM visualization for the avaialable class.
 ## Interactive_GradCAM_ImageNet.ipynb:   
